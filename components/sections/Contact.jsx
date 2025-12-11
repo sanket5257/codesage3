@@ -1,19 +1,20 @@
 import { useGSAP } from "@gsap/react";
-import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
-import Marquee from "../components/Marquee";
-import { socials } from "../constants";
+import AnimatedHeaderSection from "../AnimatedHeaderSection";
+import Marquee from "../Marquee";
+import { socials, companyInfo } from "../../constants";
 import gsap from "gsap";
 
 const Contact = () => {
-  const text = `Got a question, how or project Idea?
-    WE’D love to hear from you and discus further!`;
+  const text = `Ready to transform your business with technology?
+    Let's discuss your project and create something amazing together!`;
   const items = [
-    "just imagin, I code",
-    "just imagin, I code",
-    "just imagin, I code",
-    "just imagin, I code",
-    "just imagin, I code",
+    "Let's innovate together",
+    "Let's innovate together", 
+    "Let's innovate together",
+    "Let's innovate together",
+    "Let's innovate together",
   ];
+  
   useGSAP(() => {
     gsap.from(".social-link", {
       y: 100,
@@ -27,6 +28,7 @@ const Contact = () => {
       },
     });
   }, []);
+  
   return (
     <section
       id="contact"
@@ -34,7 +36,7 @@ const Contact = () => {
     >
       <div>
         <AnimatedHeaderSection
-          subTitle={"You Dream It, I Code it"}
+          subTitle={"Your Vision, Our Expertise"}
           title={"Contact"}
           text={text}
           textColor={"text-white"}
@@ -46,14 +48,21 @@ const Contact = () => {
               <h2>E-mail</h2>
               <div className="w-full h-px my-2 bg-white/30" />
               <p className="text-xl tracking-wider lowercase md:text-2xl lg:text-3xl">
-                JohnDoe@gmail.com
+                {companyInfo.email}
               </p>
             </div>
             <div className="social-link">
               <h2>Phone</h2>
               <div className="w-full h-px my-2 bg-white/30" />
               <p className="text-xl lowercase md:text-2xl lg:text-3xl">
-                +33 7 12 12 32 12
+                {companyInfo.phone}
+              </p>
+            </div>
+            <div className="social-link">
+              <h2>Address</h2>
+              <div className="w-full h-px my-2 bg-white/30" />
+              <p className="text-xl lowercase md:text-2xl lg:text-3xl">
+                {companyInfo.address}
               </p>
             </div>
             <div className="social-link">
@@ -64,6 +73,8 @@ const Contact = () => {
                   <a
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xs leading-loose tracking-wides uppercase md:text-sm hover:text-white/80 transition-colors duration-200"
                   >
                     {"{ "}

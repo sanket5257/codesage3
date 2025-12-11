@@ -1,30 +1,42 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
-import { projects } from "../constants";
+import AnimatedHeaderSection from "../AnimatedHeaderSection";
+import { projects } from "../../constants";
 import { useRef, useState } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Works = () => {
   const overlayRefs = useRef([]);
   const previewRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(null);
-  const text = `Featured projects that have been meticulously
-    crafted with passion to drive
-    results and impact.`;
+  const text = `Showcasing our portfolio of successful projects
+    that have transformed businesses and driven
+    measurable results for our clients`;
 
   const mouse = useRef({ x: 0, y: 0 });
   const moveX = useRef(null);
   const moveY = useRef(null);
 
   useGSAP(() => {
+    // Initialize preview image position and scale
+    gsap.set(previewRef.current, {
+      opacity: 0,
+      scale: 0.8,
+      x: 0,
+      y: 0,
+    });
+
     moveX.current = gsap.quickTo(previewRef.current, "x", {
-      duration: 1.5,
+      duration: 0.8,
       ease: "power3.out",
     });
     moveY.current = gsap.quickTo(previewRef.current, "y", {
-      duration: 2,
+      duration: 1,
       ease: "power3.out",
     });
 
@@ -93,17 +105,19 @@ const Works = () => {
 
   const handleMouseMove = (e) => {
     if (window.innerWidth < 768) return;
-    mouse.current.x = e.clientX + 24;
-    mouse.current.y = e.clientY + 24;
-    moveX.current(mouse.current.x);
-    moveY.current(mouse.current.y);
+    mouse.current.x = e.clientX - 200; // Center the preview on cursor
+    mouse.current.y = e.clientY - 150; // Center the preview on cursor
+    if (moveX.current && moveY.current) {
+      moveX.current(mouse.current.x);
+      moveY.current(mouse.current.y);
+    }
   };
 
   return (
     <section id="work" className="flex flex-col min-h-screen">
       <AnimatedHeaderSection
-        subTitle={"Logic meets Aesthetics, Seamlessly"}
-        title={"Works"}
+        subTitle={"Innovation Meets Implementation"}
+        title={"Portfolio"}
         text={text}
         textColor={"text-black"}
         withScrollTrigger={true}
@@ -125,7 +139,8 @@ const Works = () => {
               ref={(el) => {
                 overlayRefs.current[index] = el;
               }}
-              className="absolute inset-0 hidden md:block duration-200 bg-black -z-10 clip-path"
+              className="absolute inset-0 hidden md:block duration-200 bg-black -z-10"
+              style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
             />
 
             {/* title */}
@@ -150,29 +165,33 @@ const Works = () => {
             </div>
             {/* mobile preview image */}
             <div className="relative flex items-center justify-center px-10 md:hidden h-[400px]">
-              <img
+              <Image
                 src={project.bgImage}
                 alt={`${project.name}-bg-image`}
-                className="object-cover w-full h-full rounded-md brightness-50"
+                fill
+                className="object-cover rounded-md brightness-50"
               />
-              <img
+              <Image
                 src={project.image}
                 alt={`${project.name}-image`}
-                className="absolute bg-center px-14 rounded-xl"
+                width={300}
+                height={200}
+                className="absolute bg-center px-14 rounded-xl z-10"
               />
             </div>
           </div>
         ))}
-        {/* desktop Flaoting preview image */}
+        {/* desktop Floating preview image */}
         <div
           ref={previewRef}
-          className="fixed -top-2/6 left-0 z-50 overflow-hidden border-8 border-black pointer-events-none w-[960px] md:block hidden opacity-0"
+          className="fixed top-0 left-0 z-50 overflow-hidden border-4 border-black pointer-events-none w-[400px] h-[300px] md:block hidden opacity-0 rounded-lg"
         >
           {currentIndex !== null && (
-            <img
+            <Image
               src={projects[currentIndex].image}
               alt="preview"
-              className="object-cover w-full h-full"
+              fill
+              className="object-cover"
             />
           )}
         </div>

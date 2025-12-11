@@ -1,18 +1,20 @@
 import { Canvas } from "@react-three/fiber";
-import { Planet } from "../components/Planet";
+import { Planet } from "../Planet";
 import { Environment, Float, Lightformer } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
-import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
+import AnimatedHeaderSection from "../AnimatedHeaderSection";
+
 const Hero = () => {
   const isMobile = useMediaQuery({ maxWidth: 853 });
-  const text = `I help growing brands and startups gain an
-unfair advantage through premium
-results driven webs/apps`;
+  const text = `CodeSage transforms your business vision into 
+cutting-edge digital solutions that drive 
+growth and innovation`;
+  
   return (
     <section id="home" className="flex flex-col justify-end min-h-screen">
       <AnimatedHeaderSection
-        subTitle={"404 No Bugs Found"}
-        title={"Ali Sanati"}
+        subTitle={"Enterprise IT Solutions"}
+        title={"CodeSage"}
         text={text}
         textColor={"text-black"}
       />

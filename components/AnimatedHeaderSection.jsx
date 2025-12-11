@@ -1,8 +1,9 @@
 import React from "react";
 import { useRef } from "react";
-import { AnimatedTextLines } from "../components/AnimatedTextLines";
+import { AnimatedTextLines } from "./AnimatedTextLines";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+
 const AnimatedHeaderSection = ({
   subTitle,
   title,
@@ -14,6 +15,7 @@ const AnimatedHeaderSection = ({
   const headerRef = useRef(null);
   const shouldSplitTitle = title.includes(" ");
   const titleParts = shouldSplitTitle ? title.split(" ") : [title];
+  
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: withScrollTrigger
@@ -38,6 +40,7 @@ const AnimatedHeaderSection = ({
       "<+0.2"
     );
   }, []);
+  
   return (
     <div ref={contextRef}>
       <div style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}>

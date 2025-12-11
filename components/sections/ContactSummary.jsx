@@ -1,23 +1,26 @@
 import { useRef } from "react";
-import Marquee from "../components/Marquee";
+import Marquee from "../Marquee";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ContactSummary = () => {
   const containerRef = useRef(null);
   const items = [
     "Innovation",
-    "Precision",
-    "Trust",
-    "Collaboration",
-    "Excellence",
+    "Excellence", 
+    "Partnership",
+    "Growth",
+    "Success",
   ];
   const items2 = [
-    "contact us",
-    "contact us",
-    "contact us",
-    "contact us",
-    "contact us",
+    "start your project",
+    "start your project",
+    "start your project", 
+    "start your project",
+    "start your project",
   ];
 
   useGSAP(() => {
@@ -33,6 +36,7 @@ const ContactSummary = () => {
       },
     });
   }, []);
+  
   return (
     <section
       ref={containerRef}
@@ -41,10 +45,10 @@ const ContactSummary = () => {
       <Marquee items={items} />
       <div className="overflow-hidden font-light text-center contact-text-responsive">
         <p>
-          “ Let’s build a <br />
-          <span className="font-normal">memorable</span> &{" "}
-          <span className="italic">inspiring</span> <br />
-          web application <span className="text-gold">together</span> “
+          &ldquo; Ready to transform <br />
+          <span className="font-normal">your business</span> with{" "}
+          <span className="italic">cutting-edge</span> <br />
+          technology <span className="text-gold">solutions?</span> &rdquo;
         </p>
       </div>
       <Marquee

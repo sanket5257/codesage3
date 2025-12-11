@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { socials } from "../constants";
+import { socials, companyInfo } from "../../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Link } from "react-scroll";
@@ -14,6 +14,7 @@ const Navbar = () => {
   const iconTl = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
+  
   useGSAP(() => {
     gsap.set(navRef.current, { xPercent: 100 });
     gsap.set([linksRef.current, contactRef.current], {
@@ -95,6 +96,7 @@ const Navbar = () => {
     }
     setIsOpen(!isOpen);
   };
+  
   return (
     <>
       <nav
@@ -125,7 +127,7 @@ const Navbar = () => {
           <div className="font-light">
             <p className="tracking-wider text-white/50">E-mail</p>
             <p className="text-xl tracking-widest lowercase text-pretty">
-              JohnDoe@gmail.com
+              {companyInfo.email}
             </p>
           </div>
           <div className="font-light">
@@ -135,6 +137,8 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm leading-loose tracking-widest uppercase hover:text-white transition-colors duration-300"
                 >
                   {"{ "}
