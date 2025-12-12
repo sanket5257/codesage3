@@ -32,7 +32,7 @@ const Services = () => {
   }, []);
   
   return (
-    <section id="services" className="min-h-screen bg-black rounded-t-4xl">
+    <section id="services" className="min-h-screen px-16 bg-black rounded-t-4xl">
       <AnimatedHeaderSection
         subTitle={"Technology Excellence, Business Impact"}
         title={"Services"}
