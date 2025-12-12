@@ -24,7 +24,7 @@ Founded in ${companyInfo.founded}, we've successfully delivered ${companyInfo.pr
   
   useGSAP(() => {
     gsap.to("#about", {
-      scale: 0.95,
+      scale: 0.80,
       scrollTrigger: {
         trigger: "#about",
         start: "bottom 80%",
