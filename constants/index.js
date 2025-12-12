@@ -94,6 +94,14 @@ export const projects = [
       { id: 4, name: "PostgreSQL" },
       { id: 5, name: "AWS" },
     ],
+    features: [
+      "Multi-vendor marketplace architecture",
+      "Advanced inventory management system",
+      "Integrated payment processing with multiple gateways",
+      "Real-time order tracking and notifications",
+      "B2B bulk ordering and pricing tiers",
+      "Comprehensive admin dashboard and analytics"
+    ],
   },
   {
     id: 2,
@@ -108,6 +116,14 @@ export const projects = [
       { id: 2, name: "ASP.NET Core" },
       { id: 3, name: "SQL Server" },
       { id: 4, name: "Azure" },
+    ],
+    features: [
+      "HIPAA-compliant patient data management",
+      "Integrated telemedicine and video consultations",
+      "Automated appointment scheduling system",
+      "Electronic health records (EHR) integration",
+      "Prescription management and e-prescribing",
+      "Insurance verification and billing automation"
     ],
   },
   {
@@ -124,6 +140,14 @@ export const projects = [
       { id: 3, name: "MongoDB" },
       { id: 4, name: "Docker" },
     ],
+    features: [
+      "Real-time market data processing and visualization",
+      "Advanced risk assessment and portfolio analysis",
+      "Automated compliance monitoring and reporting",
+      "Customizable financial dashboards and KPIs",
+      "Machine learning-powered predictive analytics",
+      "Multi-asset class performance tracking"
+    ],
   },
   {
     id: 4,
@@ -138,6 +162,14 @@ export const projects = [
       { id: 2, name: "Django" },
       { id: 3, name: "TensorFlow" },
       { id: 4, name: "Kubernetes" },
+    ],
+    features: [
+      "AI-powered demand forecasting and planning",
+      "Automated inventory optimization algorithms",
+      "Real-time supplier performance monitoring",
+      "Predictive maintenance scheduling",
+      "End-to-end supply chain visibility",
+      "Automated procurement and vendor management"
     ],
   },
   {
@@ -154,6 +186,14 @@ export const projects = [
       { id: 3, name: "InfluxDB" },
       { id: 4, name: "Grafana" },
     ],
+    features: [
+      "Real-time IoT sensor data collection and processing",
+      "Intelligent traffic flow optimization system",
+      "Energy consumption monitoring and optimization",
+      "Environmental quality tracking and alerts",
+      "Predictive maintenance for city infrastructure",
+      "Citizen engagement mobile application"
+    ],
   },
   {
     id: 6,
@@ -168,6 +208,14 @@ export const projects = [
       { id: 2, name: "Express.js" },
       { id: 3, name: "Redis" },
       { id: 4, name: "WebRTC" },
+    ],
+    features: [
+      "AI-powered personalized learning paths",
+      "Interactive multimedia content delivery",
+      "Real-time progress tracking and analytics",
+      "Live video conferencing and virtual classrooms",
+      "Automated assessment and grading system",
+      "Gamification and achievement badges"
     ],
   },
 ];

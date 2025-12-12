@@ -138,19 +138,9 @@ const ProjectPage = () => {
                   Key Features
                 </h3>
                 <div className="space-y-3">
-                  {[
-                    "Scalable architecture designed for high performance",
-                    "Responsive design optimized for all devices", 
-                    "Advanced security and data protection measures",
-                    "Real-time data processing and analytics",
-                    "Intuitive user interface and experience",
-                    "Comprehensive testing and quality assurance"
-                  ].map((feature, index) => (
+                  {project.features?.map((feature, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <Icon 
-                        icon="lucide:check-circle" 
-                        className="size-6 text-green-600 mt-0.5 flex-shrink-0" 
-                      />
+                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0" />
                       <span className="text-gray-700">{feature}</span>
                     </div>
                   ))}
