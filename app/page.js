@@ -10,6 +10,7 @@ import About from "../components/sections/About";
 import Works from "../components/sections/Works";
 import ContactSummary from "../components/sections/ContactSummary";
 import Contact from "../components/sections/Contact";
+import GlobalPlanet from "../components/GlobalPlanet";
 import { useProgress } from "@react-three/drei";
 
 const HomePage = () => {
@@ -42,14 +43,17 @@ const HomePage = () => {
           isReady ? "opacity-100" : "opacity-0"
         } transition-opacity duration-1000`}
       >
-        <Navbar />
-        <Hero />
-        <ServiceSummary />
-        <Services />
-        <About />
-        <Works />
-        <ContactSummary />
-        <Contact />
+        <GlobalPlanet />
+        <div className="relative z-20">
+          <Navbar />
+          <Hero />
+          <ServiceSummary />
+          <Services />
+          <About />
+          <Works />
+          {/* <ContactSummary /> */}
+          <Contact />
+        </div>
       </div>
     </ReactLenis>
   );
