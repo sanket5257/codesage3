@@ -136,7 +136,7 @@ const Works = () => {
           <div
             key={project.id}
             id="project"
-            className="relative flex py-16 flex-col gap-1 py-5 cursor-pointer group md:gap-0"
+            className="relative flex py-16 flex-col gap-1 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
             onClick={() => handleProjectClick(project)}
