@@ -64,7 +64,7 @@ const ContactSummary = () => {
         <h2 className="text-4xl md:text-6xl lg:text-8xl font-light leading-tight mb-8">
           Ready to build something
           <br />
-          <span className="italic text-gold">amazing</span> together?
+          <span className="italic font-semibold text-gold">amazing</span> together?
         </h2>
         <p className="text-xl md:text-2xl text-black/70 max-w-2xl mx-auto">
           Let's transform your ideas into powerful digital solutions
