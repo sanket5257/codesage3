@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Planet } from "./Planet";
 import { Environment, Float, Lightformer } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
+import { usePathname } from "next/navigation";
 
 const GlobalPlanet = () => {
   const [planetState, setPlanetState] = useState({
@@ -12,67 +13,91 @@ const GlobalPlanet = () => {
   });
   const isMobile = useMediaQuery({ maxWidth: 853 });
   const planetRef = useRef(null);
+  const pathname = usePathname();
+  const isProjectPage = pathname?.startsWith('/project/');
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Get section positions
-      const homeSection = document.getElementById('home');
-      const aboutSection = document.getElementById('about');
-      const servicesSection = document.getElementById('services');
-      const workSection = document.getElementById('work');
-      const contactSection = document.getElementById('contact');
       
       let newState = { ...planetState };
       
-      if (homeSection && aboutSection && servicesSection && workSection && contactSection) {
-        const aboutTop = aboutSection.offsetTop;
-        const servicesTop = servicesSection.offsetTop;
-        const workTop = workSection.offsetTop;
-        const contactTop = contactSection.offsetTop;
-        
-        // Hero section - full visibility, center position
-        if (scrollY < aboutTop - windowHeight * 0.2) {
+      // Project page behavior - simpler, more visible
+      if (isProjectPage) {
+        if (scrollY < windowHeight * 0.5) {
           newState = {
             opacity: 1,
-            scale: isMobile ? 0.7 : 1,
-            position: { x: 0, y: 0 }
+            scale: isMobile ? 0.8 : 1,
+            position: { x: isMobile ? 25 : 35, y: isMobile ? -15 : -20 }
           };
-        }
-        // About section - reduced opacity for contrast with black background
-        else if (scrollY >= aboutTop - windowHeight * 0.2 && scrollY < servicesTop + windowHeight * 0.5) {
+        } else if (scrollY < windowHeight * 1.5) {
           newState = {
-            opacity: 0.3,
-            scale: isMobile ? 0.5 : 0.8,
-            position: { x: isMobile ? 20 : 30, y: -10 }
+            opacity: 0.8,
+            scale: isMobile ? 0.7 : 0.9,
+            position: { x: isMobile ? -20 : -30, y: isMobile ? 10 : 15 }
           };
-        }
-        // Services section - reduced opacity for contrast
-        else if (scrollY >= servicesTop - windowHeight * 0.2 && scrollY < workTop - windowHeight * 0.2) {
-          newState = {
-            opacity: 0.4,
-            scale: isMobile ? 0.6 : 0.9,
-            position: { x: isMobile ? -20 : -30, y: 15 }
-          };
-        }
-        // Works section - visible, move to side
-        else if (scrollY >= workTop - windowHeight * 0.2 && scrollY < contactTop - windowHeight * 0.2) {
-          newState = {
-            opacity: 0,
-            scale: isMobile ? 0.5 : 0.7,
-            position: { x: isMobile ? 25 : 35, y: -15 }
-          };
-        }
-        // Contact section - visible, different position
-        else if (scrollY >= contactTop - windowHeight * 0.2) {
+        } else {
           newState = {
             opacity: 0.9,
             scale: isMobile ? 0.6 : 0.8,
-            position: { x: isMobile ? -25 : -35, y: 5 }
+            position: { x: isMobile ? 15 : 25, y: isMobile ? -5 : -10 }
           };
+        }
+      } else {
+        // Home page behavior - existing logic
+        const homeSection = document.getElementById('home');
+        const aboutSection = document.getElementById('about');
+        const servicesSection = document.getElementById('services');
+        const workSection = document.getElementById('work');
+        const contactSection = document.getElementById('contact');
+        
+        if (homeSection && aboutSection && servicesSection && workSection && contactSection) {
+          const aboutTop = aboutSection.offsetTop;
+          const servicesTop = servicesSection.offsetTop;
+          const workTop = workSection.offsetTop;
+          const contactTop = contactSection.offsetTop;
+          
+          // Hero section - full visibility, center position
+          if (scrollY < aboutTop - windowHeight * 0.2) {
+            newState = {
+              opacity: 1,
+              scale: isMobile ? 0.7 : 1,
+              position: { x: 0, y: 0 }
+            };
+          }
+          // About section - reduced opacity for contrast with black background
+          else if (scrollY >= aboutTop - windowHeight * 0.2 && scrollY < servicesTop + windowHeight * 0.5) {
+            newState = {
+              opacity: 0.3,
+              scale: isMobile ? 0.5 : 0.8,
+              position: { x: isMobile ? 20 : 30, y: -10 }
+            };
+          }
+          // Services section - reduced opacity for contrast
+          else if (scrollY >= servicesTop - windowHeight * 0.2 && scrollY < workTop - windowHeight * 0.2) {
+            newState = {
+              opacity: 0.4,
+              scale: isMobile ? 0.6 : 0.9,
+              position: { x: isMobile ? -20 : -30, y: 15 }
+            };
+          }
+          // Works section - visible, move to side
+          else if (scrollY >= workTop - windowHeight * 0.2 && scrollY < contactTop - windowHeight * 0.2) {
+            newState = {
+              opacity: 0,
+              scale: isMobile ? 0.5 : 0.7,
+              position: { x: isMobile ? 25 : 35, y: -15 }
+            };
+          }
+          // Contact section - visible, different position
+          else if (scrollY >= contactTop - windowHeight * 0.2) {
+            newState = {
+              opacity: 0.9,
+              scale: isMobile ? 0.6 : 0.8,
+              position: { x: isMobile ? -25 : -35, y: 5 }
+            };
+          }
         }
       }
       
@@ -81,7 +106,7 @@ const GlobalPlanet = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile]);
+  }, [isMobile, isProjectPage]);
 
   return (
     <div 

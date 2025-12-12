@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import AnimatedHeaderSection from "../AnimatedHeaderSection";
 import { projects } from "../../constants";
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -12,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Works = () => {
   const overlayRefs = useRef([]);
   const previewRef = useRef(null);
+  const router = useRouter();
 
   const [currentIndex, setCurrentIndex] = useState(null);
   const text = `Showcasing our portfolio of successful projects
@@ -113,6 +115,10 @@ const Works = () => {
     }
   };
 
+  const handleProjectClick = (project) => {
+    router.push(`/project/${project.id}`);
+  };
+
   return (
     <section id="work" className="flex flex-col min-h-screen">
       <AnimatedHeaderSection
@@ -133,6 +139,7 @@ const Works = () => {
             className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
+            onClick={() => handleProjectClick(project)}
           >
             {/* overlay */}
             <div
@@ -184,7 +191,7 @@ const Works = () => {
         {/* desktop Floating preview image */}
         <div
           ref={previewRef}
-          className="fixed top-0 left-0 z-50 overflow-hidden border-4 border-black pointer-events-none w-[400px] h-[300px] md:block hidden opacity-0 rounded-lg"
+          className="fixed top-0 left-0 z-50 overflow-hidden border-4 border-black pointer-events-none w-[500px] h-[400px] md:block hidden opacity-0 rounded-lg"
         >
           {currentIndex !== null && (
             <Image
@@ -196,6 +203,7 @@ const Works = () => {
           )}
         </div>
       </div>
+
     </section>
   );
 };

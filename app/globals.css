@@ -150,4 +150,11 @@ body {
   .contact-text-responsive {
     @apply text-[42px] sm:text-[52px] md:text-[62px] lg:text-[100px];
   }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }

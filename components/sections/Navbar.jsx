@@ -3,6 +3,7 @@ import { socials, companyInfo } from "../../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Link } from "react-scroll";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const navRef = useRef(null);
@@ -14,6 +15,9 @@ const Navbar = () => {
   const iconTl = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
+  const pathname = usePathname();
+  const router = useRouter();
+  const isProjectPage = pathname?.startsWith('/project/');
   
   useGSAP(() => {
     gsap.set(navRef.current, { xPercent: 100 });
@@ -104,6 +108,14 @@ const Navbar = () => {
       setIsOpen(false);
     }
   };
+
+  const handleNavClick = (section) => {
+    closeMenu();
+    if (isProjectPage) {
+      // Navigate to home page with section hash
+      router.push(`/#${section}`);
+    }
+  };
   
   return (
     <>
@@ -115,16 +127,25 @@ const Navbar = () => {
           {["home", "services", "about", "work", "contact"].map(
             (section, index) => (
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
-                <Link
-                  className="transition-all duration-300 cursor-pointer hover:text-white"
-                  to={`${section}`}
-                  smooth
-                  offset={0}
-                  duration={2000}
-                  onClick={closeMenu}
-                >
-                  {section}
-                </Link>
+                {isProjectPage ? (
+                  <button
+                    className="transition-all duration-300 cursor-pointer hover:text-white text-left"
+                    onClick={() => handleNavClick(section)}
+                  >
+                    {section}
+                  </button>
+                ) : (
+                  <Link
+                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    to={`${section}`}
+                    smooth
+                    offset={0}
+                    duration={2000}
+                    onClick={closeMenu}
+                  >
+                    {section}
+                  </Link>
+                )}
               </div>
             )
           )}
